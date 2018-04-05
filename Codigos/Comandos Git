@@ -1,0 +1,6 @@
+git add --all
+    #Adiciona mudanças atuais para serem commitadas
+git commit -m "MENSAGEM"
+    #Gera um commit com a mensagem especificada
+git push
+    #Solicita permissão do repositório para subir o commit. (Precisa de autenticação)
