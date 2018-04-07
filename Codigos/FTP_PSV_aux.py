@@ -8,8 +8,8 @@ s21.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR , 1)
 #s.bind(('wlan0', 0x0800))
 
 # ESCOLHE SERVER
-alvo = socket.gethostbyname("ftp.dca.fee.unicamp.br")
-#alvo = socket.gethostbyname("ftp.ed.ac.uk")
+#alvo = socket.gethostbyname("ftp.dca.fee.unicamp.br")
+alvo = socket.gethostbyname("ftp.ed.ac.uk")
 #alvo = socket.gethostbyname("ftp.inf.puc-rio.br")
 
 # CONECTA AO SERVER
@@ -41,10 +41,15 @@ if '230' in buff:
 
 # RECEBE IP E PORT DO SERVER
 buff0 = s21.recv(65000)
-# 227 Entering Passive Mode (143,106,148,79,102,8).
-print buff0
+# 227 Entering Passive Mode (143,106,148,79,102,8). and more...
+print(buff0)
 
-buff = buff0.split()
+si = buff0.find('227')
+sf = buff.find(').')
+buff = buff0[si:sf + 2]
+print buff
+
+buff = buff.split()
 # ['227', 'Entering', 'Passive', 'Mode', '(143,106,148,79,102,8).']
 buff = buff[4]
 print buff
@@ -85,4 +90,12 @@ buff = s21.recv(1024)
 print "QUIT21: ", buff
 
 s20.close()
+
+
+time.sleep(10)
+
+s21.sendall("QUIT\r\n")
+buff = s21.recv(1024)
+print "QUIT21: ", buff
+
 s21.close()

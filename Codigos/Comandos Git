@@ -1,3 +1,5 @@
+cd edisonUPE
+
 git add --all
     #Adiciona mudanças atuais para serem commitadas
 git commit -m "MENSAGEM"
